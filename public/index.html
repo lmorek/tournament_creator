@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="tournamentCreator">
+<head>
+	<title>Tournament Creator</title>
+	<!-- <link rel="stylesheet" type="text/css" href="/../node_modules/bootstrap/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<script src="core.js"></script>
+</head>
+<body ng-controller="mainController">
+ <div class="container">
+    <div class="jumbotron">
+     <div class="container">
+      <h1>Tournament Creator<span class="label label-info"></span></h1>
+    </div>
+  </div>
+  <div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign up a team</a></li>
+      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Teams <span class="badge">{{ teams.length }}</span> </a></li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">
+      <h1></h1>
+      <div class="row">
+        <form class="col-md-6">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-flag"></span>
+            </div>
+            <input type="text" class="form-control text-center" placeholder="put a team name here" ng-model="formData.name">
+          </div>
+          <h2></h2>
+          <div class="input-group input-group-sm">
+            <div class="input-group-addon">
+              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Player" aria-describedby="sizing-addon3" ng-model="formData.player1">
+          </div>
+          <div class="input-group input-group-sm">
+            <div class="input-group-addon">
+              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Player2" aria-describedby="sizing-addon3" ng-model="formData.player2">
+          </div>
+          <div class="input-group input-group-sm">
+            <div class="input-group-addon">
+              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Player3" aria-describedby="sizing-addon3" ng-model="formData.player3">
+          </div>
+          <div class="input-group input-group-sm">
+            <div class="input-group-addon">
+              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Player4" aria-describedby="sizing-addon3" ng-model="formData.player4">
+          </div>
+          <div class="input-group input-group-sm">
+            <div class="input-group-addon">
+              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Player5" aria-describedby="sizing-addon3" ng-model="formData.player5">
+          </div>
+          <div class="input-group input-group-sm">
+            <div class="input-group-addon">
+              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Player6" aria-describedby="sizing-addon3" ng-model="formData.player6">
+          </div>
+          <h1></h1>
+          <div class = "text-right">
+            <button type="submit" class="btn btn-primary text-right" ng-click="createTeam()">Submit</button>
+          </div>
+        </form>
+        <div class="col-md-6">
+          <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          </p>
+        </div>
+      </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="profile">
+        <div ng-repeat="team in teams">
+          <ul class="list-group">
+           <li class="list-group-item">Drużyna: {{ team.name }}</li>
+         </ul>
+       </div>
+     </div>
+   </div>
+
+ </div>
+</div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+ <!-- <button ng-show="$index > 6" ng-click="removePlayer($index)">x</button> -->
