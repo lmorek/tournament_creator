@@ -27,12 +27,7 @@
 //model
  var Team = mongoose.model('Team', {
         name : String,
-        player1 : String,
-        player2 : String,
-        player3 : String,
-        player4 : String,
-        player5 : String,
-        player6 : String,
+        players: [String]
     });
 //routes
 
@@ -52,12 +47,7 @@
     app.post('/api/teams', function(req, res) {
         Team.create({
             name : req.body.name,
-            player1: req.body.player1,
-            player2: req.body.player2,
-            player3: req.body.player3,
-            player4: req.body.player4,
-            player5: req.body.player5,
-            player6: req.body.player6
+            players: req.body.players
         }, function(err, team) {
             if (err)
                 res.send(err);
@@ -69,6 +59,20 @@
             });
         });
 
+    });
+
+    app.delete('/api/teams/:team_id', function(req, res) {
+        Team.remove({
+            _id : req.params.team_id
+        }, function(err, team) {
+            if (err)
+                res.send(err);
+            Team.find(function(err, teams) {
+                if (err)
+                    res.send(err)
+                res.json(teams);
+            });
+        });
     });
 
 
