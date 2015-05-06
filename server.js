@@ -29,6 +29,10 @@
         name : String,
         players: [String]
     });
+
+ var News = mongoose.model('News', {
+        news : String,
+     });
 //routes
 
     app.get('/api/teams', function(req, res) {
@@ -43,6 +47,7 @@
             res.json(teams); // return all todos in JSON format
         });
     });
+
 
     app.post('/api/teams', function(req, res) {
         Team.create({
@@ -75,6 +80,49 @@
         });
     });
 
+
+    app.get('/api/teams', function(req, res) {
+
+        // use mongoose to get all todos in the database
+        News.find(function(err, news) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(news); // return all todos in JSON format
+        });
+    });
+
+    app.get('/api/teams', function(req, res) {
+
+        // use mongoose to get all todos in the database
+        News.find(function(err, news) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(news); // return all todos in JSON format
+        });
+    });
+
+    app.post('/api/teams', function(req, res) {
+        News.create({
+            news : req.body.news,
+           
+        }, function(err, news) {
+            if (err)
+                res.send(err);
+
+            News.find(function(err, news) {
+                if (err)
+                    res.send(err)
+                res.json(news);
+            });
+        });
+
+    });
 
  app.get('*', function(req, res) {
         res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
