@@ -21,81 +21,84 @@
   </ul>
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane" id="news">
- <div class="row">
-        <form class="col-md-6">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <span class="glyphicon glyphicon-flag"></span>
-            </div>
-            <input type="text" class="form-control text-center" placeholder="addd something" ng-model="formData.news">
+     <div class="row">
+      <form class="col-md-6">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-flag"></span>
           </div>
-          <h2></h2>
-          <div class="input-group input-group-sm" ng-repeat="news in formData.news track by $index2 ">
-            <div class="input-group-addon">
-              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
-            </div>
-            <input type="text" class="form-control" ng-model="formData.news[$index2]" placeholder="News" aria-describedby="sizing-addon3" >
+          <input type="text" class="form-control text-center" placeholder="addd something" ng-model="formData.news">
+        </div>
+        <h2></h2>
+        <div class="input-group input-group-sm" ng-repeat="news in formData.news track by $index2 ">
+          <div class="input-group-addon">
+            <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
           </div>
-          <h1></h1>
-          <div class = "text-right">
-            <button type="submit" class="btn btn-primary text-right" ng-click="addNews()">Add</button>
-          </div>
-        </form>
-      </div>
-
-
+          <input type="text" class="form-control" ng-model="formData.news[$index2]" placeholder="News" aria-describedby="sizing-addon3" >
+        </div>
+        <h1></h1>
+        <div class = "text-right">
+          <button type="submit" class="btn btn-primary text-right" ng-click="addNews()">Add</button>
+        </div>
+      </form>
     </div>
-    <div role="tabpanel" class="tab-pane active" id="home">
-      <h1></h1>
-      <div class="row">
-        <form class="col-md-6">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <span class="glyphicon glyphicon-flag"></span>
+
+
+  </div>
+  <div role="tabpanel" class="tab-pane active" id="home">
+    <h1></h1>
+    <div class="row">
+      <form class="col-md-6">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-flag"></span>
+          </div>
+          <input type="text" class="form-control text-center" placeholder="put a team name here" ng-model="formData.name">
+        </div>
+        <h2></h2>
+        <div class="input-group input-group-sm" ng-repeat="player in formData.players track by $index ">
+          <div class="input-group-addon">
+            <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+          </div>
+          <input type="text" class="form-control" ng-model="formData.players[$index]" placeholder="Player" aria-describedby="sizing-addon3" >
+        </div>
+        <h1></h1>
+        <div class="btn-toolbar pull-right">
+          <button type="Add player" class="btn btn-primary" ng-click="formData.players.push('')">Add player</button>
+          <button type="submit" class="btn btn-success" ng-click="createTeam()">Submit</button>
+        </div>
+      </form>
+      <div class="col-md-6">
+        <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default" ng-repeat="team in teams" >
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{team.name}}" aria-expanded="false" aria-controls="collapseOne{{team.name}}">
+                  {{ team.name }}
+                </a>
+              </h4>
             </div>
-            <input type="text" class="form-control text-center" placeholder="put a team name here" ng-model="formData.name">
-          </div>
-          <h2></h2>
-          <div class="input-group input-group-sm" ng-repeat="player in formData.players track by $index ">
-            <div class="input-group-addon">
-              <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
-            </div>
-            <input type="text" class="form-control" ng-model="formData.players[$index]" placeholder="Player" aria-describedby="sizing-addon3" >
-          </div>
-          <h1></h1>
-          <div class = "text-right">
-            <button type="submit" class="btn btn-primary text-right" ng-click="createTeam()">Submit</button>
-          </div>
-        </form>
-        <div class="col-md-6">
-          <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default" ng-repeat="team in teams" >
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{team.name}}" aria-expanded="false" aria-controls="collapseOne{{team.name}}">
-                    {{ team.name }}
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne{{team.name}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body" ng-repeat="player in team.players track by $index">
-                  {{team.players[$index]}}
-                </div>
+            <div id="collapseOne{{team.name}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body" ng-repeat="player in team.players track by $index">
+                {{team.players[$index]}}
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-      <div ng-repeat="team in teams">
-        <label>
-          <input type="checkbox" ng-click="deleteTeam(team._id)"> {{ team.name }}
-          <div ng-repeat="player in players">{{team.players}}</div>
-        </label>
-      </div>
+  </div>
+
+
+  <div role="tabpanel" class="tab-pane" id="profile">
+    <div ng-repeat="team in teams">
+      <label>
+        <input type="checkbox" ng-click="deleteTeam(team._id)"> {{ team.name }}
+        <div ng-repeat="player in players">{{team.players}}</div>
+      </label>
     </div>
   </div>
+</div>
 
 </div>
 
