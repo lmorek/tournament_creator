@@ -1,4 +1,5 @@
 angular.module('tournamentCreator', []).controller('mainController', ['$scope', '$http', function($scope, $http) {
+
 	$scope.formData={name: '',players: new Array(6), news: new Array()};
 
     $http.get('/api/teams')
@@ -45,4 +46,11 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
             });
     };
 
-}]);
+
+}]).filter('nospace', function () {
+    return function (value) {
+        return (!value) ? '' : value.replace(/ /g, '');
+    };
+});
+;
+

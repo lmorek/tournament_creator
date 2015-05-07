@@ -74,14 +74,14 @@
             <button type="button" class="btn btn-link btn-lg pull-right glyphicon glyphicon-remove" ng-click="deleteTeam(team._id)"></button>
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{team.name}}" aria-expanded="false" aria-controls="collapseOne{{team.name}}">
-                  {{ team.name }}
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{team.name| nospace}}" aria-expanded="false" aria-controls="{{team.name| nospace}}">
+                  {{team.name}}
                 </a>
               </h4>
               
             </div>
             
-            <div id="collapseOne{{team.name}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div id="{{team.name| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body" ng-repeat="player in team.players track by $index">
                 {{team.players[$index]}}
               </div>
