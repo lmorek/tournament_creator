@@ -14,13 +14,13 @@
 </div>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation"><a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
+    <li role="presentation" class="active"><a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
     </li>
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign up a team</a></li>
+    <li role="presentation" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign up a team</a></li>
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Teams <span class="badge">{{ teams.length }}</span> </a></li>
   </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane" id="news">
+    <div role="tabpanel" class="tab-pane active" id="news">
      <div class="row">
       <form class="col-md-6">
         <div class="input-group">
@@ -42,10 +42,9 @@
         </div>
       </form>
     </div>
-
-
   </div>
-  <div role="tabpanel" class="tab-pane active" id="home">
+
+  <div role="tabpanel" class="tab-pane" id="home">
     <h1></h1>
     <div class="row">
       <form class="col-md-6">
