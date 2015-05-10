@@ -81,7 +81,7 @@
     });
 
 
-    app.get('/api/teams', function(req, res) {
+    app.get('/api/news', function(req, res) {
 
         // use mongoose to get all todos in the database
         News.find(function(err, news) {
@@ -94,20 +94,7 @@
         });
     });
 
-    app.get('/api/teams', function(req, res) {
-
-        // use mongoose to get all todos in the database
-        News.find(function(err, news) {
-
-            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-
-            res.json(news); // return all todos in JSON format
-        });
-    });
-
-    app.post('/api/teams', function(req, res) {
+    app.post('/api/news', function(req, res) {
         News.create({
             news : req.body.news,
            
@@ -122,6 +109,20 @@
             });
         });
 
+    });
+
+     app.delete('/api/news/:news_id', function(req, res) {
+        News.remove({
+            _id : req.params.news_id
+        }, function(err, news) {
+            if (err)
+                res.send(err);
+            News.find(function(err, news) {
+                if (err)
+                    res.send(err)
+                res.json(news);
+            });
+        });
     });
 
  app.get('*', function(req, res) {

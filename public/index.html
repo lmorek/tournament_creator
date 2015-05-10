@@ -19,30 +19,45 @@
     <li role="presentation" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Teams <span class="badge">{{ teams.length }}</span> </a></li>
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Groups</a></li>
   </ul>
+
+  <!-- Tab z aktualnosciami -->
+
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="news">
      <div class="row">
-      <form class="col-md-6">
-        <div class="input-group">
-          <div class="input-group-addon">
-            <span class="glyphicon glyphicon-flag"></span>
-          </div>
-          <input type="text" class="form-control text-center" placeholder="addd something" ng-model="formData.news">
-        </div>
-        <h2></h2>
-        <div class="input-group input-group-sm" ng-repeat="news in formData.news track by $index2 ">
-          <div class="input-group-addon">
-            <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
-          </div>
-          <input type="text" class="form-control" ng-model="formData.news[$index2]" placeholder="News" aria-describedby="sizing-addon3" >
-        </div>
-        <h1></h1>
-        <div class = "text-right">
-          <button type="submit" class="btn btn-primary text-right" ng-click="addNews()">Add</button>
-        </div>
-      </form>
+
+            <div class="col-sm-6 col-sm-offset-6 text-center">
+                <form>
+                    <div class="form-group"> 
+                        <input type="text" class="form-control input-lg text-center" placeholder="Share some news" ng-model="formData.news">
+                    </div>
+                    <button type="submit" class="btn btn-info btn-md" ng-click="addNews()">Share</button>
+                </form>
+               
+            </div> 
+             <div class="panel-group col-sm-6 col-sm-offset-0" id="accordion" role="tablist">
+                       <div class="panel panel-default" ng-repeat="news in news" >
+                                 <button type="button" class="btn btn-info btn-lg pull-right glyphicon glyphicon-remove-circle" ng-click="deleteNews(news._id)"></button>    
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{news.news| nospace}}" aria-expanded="false" aria-controls="{{news.news| nospace}}">
+                                  {{news.news}}
+                                  </a>
+                                </h4>
+                                              
+                            </div>
+
+                             <div id="{{news.news| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                              <div class="panel-body" ng-repeat="news in news.news track by $index">
+                                  {{news.news[$index]}}
+                              </div>
+                            </div>
+                       </div>
+                </div> 
     </div>
   </div>
+
+<!-- dodawanie druzyn -->
 
   <div role="tabpanel" class="tab-pane" id="home">
     <h1></h1>
