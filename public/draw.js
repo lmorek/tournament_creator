@@ -16,11 +16,20 @@ function shuffle(array) {
 
   return array;
 }
+$scope.shuffleButtonClick = function(){
+	drawGroups();
+}
 
+var drawGroups = function(){
+	//[team1,team2]
+	var teamNames = $scope.teams.map(function(team){return team.name;})
+	$scope.groups = shuffler.shuffle(teamNames, $scope.groupCount);
+	//[[team1],[team2]]
 
-var teams = ['team1', 'team2', 'team3', 'team4', 'team5', 'team6', 'team7', 'team8'];
-var teams_in_group = 4;
-var group_number = 2;
+}
+
+var teams_in_group = parseInt(document.getElementById("mygroup").value);
+var group_number = parseInt(document.getElementById("mygroup2").value);
 var groups = [];
 
 shuffle(teams);
