@@ -1,131 +1,120 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Tournament Creator</title>
-	<!-- <link rel="stylesheet" type="text/css" href="/../node_modules/bootstrap/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <title>Tournament Creator</title>
+    <!-- <link rel="stylesheet" type="text/css" href="/../node_modules/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
+
 <body ng-app="tournamentCreator" ng-controller="mainController">
- <div class="container">
-  <div class="jumbotron">
-   <div class="container">
-    <h1>Tournament Creator<span class="label label-info"></span></h1>
-  </div>
-</div>
-<div role="tabpanel">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
-    </li>
-    <li role="presentation" ><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Teams <span class="badge">{{ teams.length }}</span> </a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Groups</a></li>
-  </ul>
-
-  <!-- Tab z aktualnosciami -->
-
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="news">
-     <div class="row">
-
-             <div class="panel-group col-md-6 col-sm-offset-0" id="accordion" role="tablist">
-                       <div class="panel panel-default" ng-repeat="news in news" >
-                                 <button type="button" class="btn btn-info btn-lg pull-right glyphicon glyphicon-remove-circle" ng-click="deleteNews(news._id)"></button>    
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Tournament Creator<span class="label label-info"></span></h1>
+            </div>
+        </div>
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
+                </li>
+                <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Teams <span class="badge">{{ teams.length }}</span> </a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Groups</a></li>
+            </ul>
+            <!-- Tab z aktualnosciami -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="news">
+                    <div class="row">
+                        <div class="panel-group col-md-6 col-sm-offset-0" id="accordion" role="tablist">
+                            <div class="panel panel-default" ng-repeat="news in news">
+                                <button type="button" class="btn btn-info btn-lg pull-right glyphicon glyphicon-remove-circle" ng-click="deleteNews(news._id)"></button>
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
                                   <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{news.news| nospace}}" aria-expanded="false" aria-controls="{{news.news| nospace}}">
                                   {{news.news}}
                                   </a>
                                 </h4>
-                                              
+                                </div>
+                                <div id="{{news.news| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body" ng-repeat="news in news.news track by $index">
+                                        {{news.news[$index]}}
+                                    </div>
+                                </div>
                             </div>
-
-                             <div id="{{news.news| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                              <div class="panel-body" ng-repeat="news in news.news track by $index">
-                                  {{news.news[$index]}}
-                              </div>
+                        </div>
+                        <form class="col-md-6 ng-pristine ng-valid">
+                            <div class="form-group">
+                                <input type="text" class="form-control input-lg text-center" placeholder="Share some news" ng-model="formData.news">
                             </div>
-                       </div>
-                </div> 
-
-                <form class="col-md-6 ng-pristine ng-valid">
-                    <div class="form-group"> 
-                        <input type="text" class="form-control input-lg text-center" placeholder="Share some news" ng-model="formData.news">
+                            <button type="submit" class="btn btn-info btn-md pull-right" ng-click="addNews()">Share</button>
+                        </form>
                     </div>
-                    <button type="submit" class="btn btn-info btn-md pull-right" ng-click="addNews()">Share</button>
-                </form>           
-    </div>
-  </div>
-
-<!-- dodawanie druzyn -->
-
-  <div role="tabpanel" class="tab-pane" id="home">
-    <h1></h1>
-    <div class="row">
-      <form class="col-md-6">
-        <div class="input-group">
-          <div class="input-group-addon">
-            <span class="glyphicon glyphicon-flag"></span>
-          </div>
-          <input type="text" class="form-control text-center" placeholder="put a team name here" ng-model="formData.name">
-        </div>
-        <h2></h2>
-        <div class="input-group input-group-sm" ng-repeat="player in formData.players track by $index ">
-          <div class="input-group-addon">
-            <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
-          </div>
-          <input type="text" class="form-control" ng-model="formData.players[$index]" placeholder="Player" aria-describedby="sizing-addon3" >
-        </div>
-        <h1></h1>
-        <div class="btn-toolbar pull-right">
-          <button type="Add player" class="btn btn-primary" ng-click="formData.players.push('')">Add player</button>
-          <button type="submit" class="btn btn-success" ng-click="createTeam()">Submit</button>
-        </div>
-      </form>
-      <div class="col-md-6">
-
-        <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default" ng-repeat="team in teams" >
-            <button type="button" class="btn btn-link btn-lg pull-right glyphicon glyphicon-remove" ng-click="deleteTeam(team._id)"></button>
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
+                </div>
+                <!-- dodawanie druzyn -->
+                <div role="tabpanel" class="tab-pane" id="home">
+                    <h1></h1>
+                    <div class="row">
+                        <form class="col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-flag"></span>
+                                </div>
+                                <input type="text" class="form-control text-center" placeholder="put a team name here" ng-model="formData.name">
+                            </div>
+                            <h2></h2>
+                            <div class="input-group input-group-sm" ng-repeat="player in formData.players track by $index ">
+                                <div class="input-group-addon">
+                                    <span class=" glyphicon glyphicon-user" id="sizing-addon3"></span>
+                                </div>
+                                <input type="text" class="form-control" ng-model="formData.players[$index]" placeholder="Player" aria-describedby="sizing-addon3">
+                            </div>
+                            <h1></h1>
+                            <div class="btn-toolbar pull-right">
+                                <button type="Add player" class="btn btn-primary" ng-click="formData.players.push('')">Add player</button>
+                                <button type="submit" class="btn btn-success" ng-click="createTeam()">Submit</button>
+                            </div>
+                        </form>
+                        <div class="col-md-6">
+                            <div class="panel-group " id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default" ng-repeat="team in teams">
+                                    <button type="button" class="btn btn-link btn-lg pull-right glyphicon glyphicon-remove" ng-click="deleteTeam(team._id)"></button>
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
               <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{team.name| nospace}}" aria-expanded="false" aria-controls="{{team.name| nospace}}">
                   {{team.name}}
                 </a>
               </h4>
-              
+                                    </div>
+                                    <div id="{{team.name| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body" ng-repeat="player in team.players track by $index">
+                                            {{team.players[$index]}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <div class="input-group">
+                        <input type="number" id="mygroup" ng-model="groupCount" class="form-control" s aria-label="...">
+                    </div>
+                    <div class="btn-toolbar pull-right">
+                        <button type="shuffle" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
+                    </div>
+                    <div class="list-group" ng-repeat="group in groups">
+                        <a class="list-group-item" ng-repeat="team in group">{{team}}</a>
+                    </div>
+                    <!-- <div ng-repeat="group in groups">
+                        <span ng-repeat="team in group">{{team}}</span>
+                    </div> -->
+                </div>
             </div>
-            
-            <div id="{{team.name| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body" ng-repeat="player in team.players track by $index">
-                {{team.players[$index]}}
-              </div>
-            </div>
-            
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-    <div role="tabpanel" class="tab-pane" id="profile">
-    <div class="input-group">
-      <input type="number" id="mygroup" ng-model="groupCount" class="form-control"s aria-label="...">
-    </div>
-    <div class="btn-toolbar pull-right">
-          <button type="Add player" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
-    </div>
-    <div ng-repeat="group in groups">
-        <span ng-repeat="team in group">{{team}}</span>
-    </div>
-</div>
-
-</div>
-
-
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
-<script type="text/javascript" src="core.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+        <script type="text/javascript" src="core.js"></script>
 </body>
+
 </html>
