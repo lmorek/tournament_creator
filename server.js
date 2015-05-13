@@ -31,7 +31,8 @@
     });
 
  var News = mongoose.model('News', {
-        news : String,
+        title : String,
+        article : String,
      });
 //routes
 
@@ -96,7 +97,8 @@
 
     app.post('/api/news', function(req, res) {
         News.create({
-            news : req.body.news,
+            title : req.body.title,
+            article : req.body.article,
            
         }, function(err, news) {
             if (err)

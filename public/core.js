@@ -35,7 +35,7 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
     $scope.addNews = function() {
         $http.post('/api/news', $scope.formData)
             .success(function(data) {
-                $scope.formData = {news: new Array()}; 
+                $scope.formData = {title: new Array(), article: new Array()}; 
                 $scope.news = data;
                 console.log(data);
             })
