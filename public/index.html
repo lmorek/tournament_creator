@@ -125,14 +125,15 @@
                 <button type="shuffle" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
             </div>
             <div class="row">
-            <form class="col-md-9">
-            <form class="list-group" class="col-md-3" ng-repeat="group in groups">
+            
+            <div class="list-group" ng-repeat="group in groups">
+            <form class="col-md-3">
               <a href="#" class="list-group-item active">
                 <h4 class="list-group-item-heading">Group </h4>
               </a>
               <a class="list-group-item" ng-repeat="team in group">{{team}}</a>
-            </form>
-            </form>
+              </form>
+            </div>
             </div>
 
         </div>
