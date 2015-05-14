@@ -120,24 +120,30 @@
         <div role="tabpanel" class="tab-pane" id="profile">
         <div class="row">
             <form class="col-md-3">
+            <div class="form-group">
                 <div class="input-group">
-                <div>Number of groups:</div>
-                    <input type="number" ng-model="groupCount" class="form-control" s aria-label="...">
+                  <div>Number of groups:</div>
+                      <input type="number" ng-model="groupCount" class="form-control" s aria-label="...">
+                  </div>
                 </div>
-                <div class="btn-toolbar">
-                    <button type="shuffle" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
+                <div class="form-group">
+                  <div class="btn-toolbar">
+                      <button type="shuffle" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
+                  </div>
                 </div>
             </form>
         </div>
-            <div class="row">
-            <div class="list-group" ng-repeat="group in groups">
-            <form class="col-md-3">
-              <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">Group </h4>
-              </a>
-              <a class="list-group-item" ng-repeat="team in group">{{team}}</a>
+        <div class="row">
+            
+            <form class="col-md-3" ng-repeat="group in groups">
+              <div class="list-group">
+                <a href="#" class="list-group-item active">
+                  <h4 class="list-group-item-heading">Group {{$index +1}}</h4>
+                </a>
+                <a class="list-group-item" ng-repeat="team in group">{{team}}</a>
+              </div>
               </form>
-            </div>
+            
             </div>
 
         </div>
