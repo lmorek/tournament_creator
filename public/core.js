@@ -112,7 +112,7 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
             };
 
             for (i=0; i<group_number; i++){
-                groups[i].teams.slice(0,teams_in_group);
+                groups[i]=teams.slice(0,teams_in_group);
                 teams.splice(0,teams_in_group);
             };
 
