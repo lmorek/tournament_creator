@@ -118,14 +118,18 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="profile">
-            <div class="input-group">
-                <input type="number" id="mygroup" ng-model="groupCount" class="form-control" s aria-label="...">
-            </div>
-            <div class="btn-toolbar pull-right">
-                <button type="shuffle" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
-            </div>
+        <div class="row">
+            <form class="col-md-3">
+                <div class="input-group">
+                <div>Number of groups:</div>
+                    <input type="number" ng-model="groupCount" class="form-control" s aria-label="...">
+                </div>
+                <div class="btn-toolbar pull-right">
+                    <button type="shuffle" class="btn btn-primary" ng-click="shuffleButtonClick()">Losuj</button>
+                </div>
+            </form>
+        </div>
             <div class="row">
-            
             <div class="list-group" ng-repeat="group in groups">
             <form class="col-md-3">
               <a href="#" class="list-group-item active">
