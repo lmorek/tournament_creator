@@ -71,14 +71,8 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
     }
 
     var drawGroups = function(){
-        //[team1,team2]
         var teamNames = $scope.teams.map(function(team){return team.name;});
-        $scope.groups = Shuffler.shuffle(teamNames, $scope.groupCount); //zbindowane po stronie UI
-        //[[team1],[team2]]
-        // how to display?
-        // <div ng-repeat="group in groups">
-        //  <span ng-repeat="team in group">{{team}}</span>
-        // </div>
+        $scope.groups = Shuffler.shuffle(teamNames, $scope.groupCount);
     }
 
 
@@ -118,7 +112,7 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
             };
 
             for (i=0; i<group_number; i++){
-                groups[i].push(teams.slice(0,teams_in_group));
+                groups[i].teams.slice(0,teams_in_group);
                 teams.splice(0,teams_in_group);
             };
 
