@@ -68,6 +68,8 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
 
     $scope.shuffleButtonClick = function(){
         drawGroups();
+        $scope.isDisabled = true;
+        return false;
     }
 
     var drawGroups = function(){
