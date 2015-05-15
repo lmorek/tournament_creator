@@ -72,6 +72,11 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
         return false;
     }
 
+    $scope.cancelShuffleButtonClick = function(){
+        $scope.isDisabled = false;
+        return true;
+    }
+
     var drawGroups = function(){
         var teamNames = $scope.teams.map(function(team){return team.name;});
         $scope.groups = Shuffler.shuffle(teamNames, $scope.groupCount);
