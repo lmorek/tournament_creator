@@ -1,6 +1,7 @@
 angular.module('tournamentCreator', []).controller('mainController', ['$scope', '$http','Shuffler', function($scope, $http, Shuffler) {
 
-	$scope.formData={name: '',players: new Array(6), news: new Array()};
+	$scope.formData={name: '',players: new Array(6)};
+    $scope.formNews={news: new Array()};
 
     $http.get('/api/teams')
         .success(function(data){
@@ -33,9 +34,9 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
     };
 
     $scope.addNews = function() {
-        $http.post('/api/news', $scope.formData)
+        $http.post('/api/news', $scope.formNews)
             .success(function(data) {
-                $scope.formData = {title: new Array(), article: new Array()}; 
+                $scope.formNews = {title: new Array(), article: new Array()}; 
                 $scope.news = data;
                 console.log(data);
             })

@@ -25,26 +25,7 @@
             <!-- Tab z aktualnosciami -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="news">
-                    <!-- <div class="row"> -->
-                    <!--
-                        <div class="panel-group col-md-6 col-sm-offset-0" id="accordion" role="tablist">
-                            <div class="panel panel-default" ng-repeat="news in news">
-                                <button type="button" class="btn btn-info btn-lg pull-right glyphicon glyphicon-remove-circle" ng-click="deleteNews(news._id)"></button>
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{news.news| nospace}}" aria-expanded="false" aria-controls="{{news.news| nospace}}">
-                                  {{news.news}}
-                                  </a>
-                                </h4>
-                                </div>
-                                <div id="{{news.news| nospace}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body" ng-repeat="news in news.news track by $index">
-                                        {{news.news[$index]}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    -->
+                   
                     <h1></h1>
                     <div class="coll-md-8">
                         <div class="panel panel-info" ng-repeat="news in news">
@@ -63,10 +44,10 @@
                 </div>
                 <form class="col-md-6 ng-pristine ng-valid">
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Add title" ng-model="formData.title">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Add title" ng-model="formNews.title">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Share some news" ng-model="formData.article">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Share some news" ng-model="formNews.article">
                     </div>
                     <button type="submit" class="btn btn-info btn-md pull-right" ng-click="addNews()">Share</button>
                 </form>
