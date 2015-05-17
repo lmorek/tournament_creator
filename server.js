@@ -34,6 +34,10 @@
         title : String,
         article : String,
      });
+
+ var Groups = mongoose.model('Groups', {
+        groups: [String]
+     });
 //routes
 
     app.get('/api/teams', function(req, res) {
