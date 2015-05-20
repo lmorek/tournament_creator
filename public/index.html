@@ -28,30 +28,32 @@
                    
                     <h1></h1>
                     <div class="coll-md-8">
-                        <div class="panel panel-info" ng-repeat="news in news">
-                            <button type="button" class="btn btn-link btn-md pull-right " ng-click="deleteNews(news._id)">
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                           <div class="panel-heading">
-                                <h3 class="panel-title">
-                                  {{news.title}}
-                              </h3> 
-                          </div>
-                          <div class="panel-body">
-                            {{news.article}}
-                        </div>
+                        <div class="panel panel-default" ng-repeat="news in news">
+                              <h4></h4>
+                              <div class="panel-body">
+                                {{news.article}}
+                              </div>
+                              <h2></h2>
+                              <div class="btn-toolbar pull-right">
+                                  <h4></h4>
+                                  <button type="Edit" class="btn btn-warning btn-md">Edit</button>
+                                  <button type="Remove" class="btn btn-primary btn-md " ng-click="deleteNews(news._id)">Remove</button>
+
+                              </div>
+                              
+                        </div>  
                     </div>
-                </div>
-                <form class="col-md-6 ng-pristine ng-valid">
+
+                <div class="container">
+                  <h2>Add some news ;)</h2>
+                  <form role="form">
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Add title" ng-model="formNews.title">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Share some news" ng-model="formNews.article">
+                     
+                      <textarea class="form-control" rows="5" ng-model="formNews.article"></textarea>
                     </div>
                     <button type="submit" class="btn btn-info btn-md pull-right" ng-click="addNews()">Share</button>
-                </form>
-               
+                  </form>
+                </div>
             </div>
             <!-- dodawanie druzyn -->
             <div role="tabpanel" class="tab-pane" id="home">
