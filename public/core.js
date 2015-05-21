@@ -2,6 +2,7 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
 
 	$scope.formData={name: '',players: new Array(6)};
     $scope.formNews={news: new Array()};
+    $scope.formGroups={groups: new Array()};
 
     $http.get('/api/teams')
         .success(function(data){
@@ -15,6 +16,15 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
     $http.get('/api/news')
         .success(function(data){
             $scope.news = data;
+            console.log(data);
+        })
+        .error(function(data){
+            console.log('Error: ' +data);
+        });
+
+    $http.get('/api/groups')
+        .success(function(data){
+            $scope.groups = data;
             console.log(data);
         })
         .error(function(data){
@@ -38,6 +48,17 @@ angular.module('tournamentCreator', []).controller('mainController', ['$scope', 
             .success(function(data) {
                 $scope.formNews = {title: new Array(), article: new Array()}; 
                 $scope.news = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+    $scope.createGroups = function() {
+        $http.post('/api/groups', $scope.formGroups)
+            .success(function(data) {
+                $scope.formGroups = {groups: new Array()}; 
+                $scope.groups = data;
                 console.log(data);
             })
             .error(function(data) {

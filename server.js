@@ -131,6 +131,51 @@
         });
     });
 
+     app.get('/api/groups', function(req, res) {
+
+        // use mongoose to get all todos in the database
+        Groups.find(function(err, groups) {
+
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if (err)
+                res.send(err)
+
+            res.json(groups);
+        });
+    });
+
+     app.post('/api/groups', function(req, res) {
+        Groups.create({
+            groups : req.body.groups,
+           
+        }, function(err, groups) {
+            if (err)
+                res.send(err);
+
+            Groups.find(function(err, groups) {
+                if (err)
+                    res.send(err)
+                res.json(groups);
+            });
+        });
+
+    });
+
+
+    app.delete('/api/groups/:groups_id', function(req, res) {
+        Groups.remove({
+            _id : req.params.groups_id
+        }, function(err, groups) {
+            if (err)
+                res.send(err);
+            Groups.find(function(err, groups) {
+                if (err)
+                    res.send(err)
+                res.json(groups);
+            });
+        });
+    });
+
  app.get('*', function(req, res) {
         res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
