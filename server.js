@@ -98,7 +98,7 @@
             res.json(news); // return all todos in JSON format
         });
     });
-
+    
     app.post('/api/news', function(req, res) {
         News.create({
             title : req.body.title,
